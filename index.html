@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flex Your Catch - Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #e0f2fe;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #0284c7;
+    border-radius: 9999px;
+  }
+
+  /* Fade-in animation */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation-fill-mode: forwards;
+    animation-name: fadeInUp;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fancy button style */
+  .btn-primary {
+    background-color: #2563eb; /* Tailwind blue-600 */
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem; /* py-3 px-6 */
+    border-radius: 9999px; /* rounded-full */
+    box-shadow: 0 10px 15px -3px rgba(59,130,246,0.5), 0 4px 6px -2px rgba(59,130,246,0.3);
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .btn-primary:hover {
+    background-color: #1d4ed8; /* Tailwind blue-700 */
+  }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+    <div class="container mx-auto flex justify-between items-center px-6 py-4">
+      <a href="index.html" class="text-3xl font-extrabold text-blue-700 flex items-center gap-2">
+        🎣 Flex Your Catch
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="hidden md:flex space-x-6 text-blue-700 font-semibold items-center">
+        <li><a href="index.html" class="nav-link nav-link-active">Home</a></li>
+        <li><a href="catches.html" class="nav-link hover:underline">Catches</a></li>
+        <li><a href="about.html" class="nav-link hover:underline">About</a></li>
+        <li><a href="contact.html" class="nav-link hover:underline">Contact</a></li>
+        <li><a href="leaderboard.html" class="nav-link hover:underline">Leaderboard</a></li>
+        <!-- Fancy Submit Button in navbar -->
+        <li>
+          <a href="submit.html" class="btn-primary">
+            📸 Submit Your Catch
+          </a>
+        </li>
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden focus:outline-none">
+        <svg class="w-8 h-8 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white px-6 py-4">
+      <ul class="flex flex-col space-y-4 text-blue-700 font-semibold">
+        <li><a href="index.html" class="nav-link nav-link-active">Home</a></li>
+        <li><a href="catches.html" class="nav-link hover:underline">Catches</a></li>
+        <li><a href="submit.html" class="nav-link hover:underline">Submit</a></li>
+        <li><a href="about.html" class="nav-link hover:underline">About</a></li>
+        <li><a href="contact.html" class="nav-link hover:underline">Contact</a></li>
+        <li><a href="leaderboard.html" class="nav-link hover:underline">Leaderboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="h-[65vh] bg-[url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80')] bg-cover bg-center relative flex items-center justify-center">
+    <div class="absolute inset-0 bg-blue-900 bg-opacity-70"></div>
+    <div class="text-center relative z-10 max-w-3xl px-6 fade-in" style="animation-delay: 0.2s;">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-lg">
+        Flex Your Catch
+      </h1>
+      <p class="text-xl md:text-2xl text-blue-200 mb-8 drop-shadow-lg">
+        Show off your biggest wins from the ocean and rivers — and join the ultimate fishing crew.
+      </p>
+      <a href="submit.html" class="btn-primary">
+        📸 Submit Your Catch
+      </a>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section class="container mx-auto px-6 py-16 max-w-7xl fade-in" style="animation-delay: 0.4s;">
+    <h2 class="text-4xl font-bold text-blue-800 mb-8 text-center">Welcome to Flex Your Catch</h2>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-lg leading-relaxed text-blue-900 mb-6">
+          Fishing isn’t just a hobby — it’s a way of life. Whether you're casting lines off the coast or reeling in that trophy from the riverbank, this is your space to brag, share, and learn.
+        </p>
+        <p class="text-lg leading-relaxed text-blue-900">
+          Join a community of passionate anglers who know that every catch has a story, and every story deserves to be told.
+        </p>
+      </div>
+      <div>
+        <img
+          src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80"
+          alt="Fishing community"
+          class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="bg-white py-16 fade-in" style="animation-delay: 0.6s;">
+    <div class="container mx-auto max-w-7xl px-6 text-center">
+      <h3 class="text-3xl font-extrabold text-blue-700 mb-12">What Makes Us Different?</h3>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="p-6 bg-blue-50 rounded-xl shadow-lg hover:shadow-xl transition">
+          <svg class="mx-auto mb-4 w-12 h-12 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M3 12l2-2 4 4 8-8 2 2" />
+          </svg>
+          <h4 class="text-xl font-bold text-blue-800 mb-2">Community Focused</h4>
+          <p class="text-blue-900">Connect with anglers who share your passion and swap stories and tips.</p>
+        </div>
+        <div class="p-6 bg-blue-50 rounded-xl shadow-lg hover:shadow-xl transition">
+          <svg class="mx-auto mb-4 w-12 h-12 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          <h4 class="text-xl font-bold text-blue-800 mb-2">Up-to-date Catches</h4>
+          <p class="text-blue-900">See the freshest catches and brag-worthy fish from all over.</p>
+        </div>
+        <div class="p-6 bg-blue-50 rounded-xl shadow-lg hover:shadow-xl transition">
+          <svg class="mx-auto mb-4 w-12 h-12 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M21 12c0 4.418-3.582 8-8 8s-8-3.582-8-8c0-1.312.414-2.53 1.113-3.528" />
+            <path d="M7.5 9l4.5 3-4.5 3" />
+          </svg>
+          <h4 class="text-xl font-bold text-blue-800 mb-2">Easy Submission</h4>
+          <p class="text-blue-900">Upload your catch in seconds and get featured in the community feed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Catch Section -->
+  <section class="container mx-auto px-6 py-16 max-w-7xl fade-in" style="animation-delay: 0.8s;">
+    <h3 class="text-4xl font-extrabold text-blue-700 mb-10 text-center">Featured Catch of the Week</h3>
+    <div class="relative max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition cursor-pointer">
+      <img src="https://images.unsplash.com/photo-1609421869308-40cfec816d3b?auto=format&fit=crop&w=1000&q=80" alt="Featured Flathead Fish" class="w-full object-cover h-96" />
+      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-blue-900/80 to-transparent p-6">
+        <h4 class="text-3xl font-bold text-white mb-2">Flathead</h4>
+        <p class="text-white text-lg italic">"Caught this beast at Botany Bay just before sunset. The fight was real!"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="bg-blue-100 py-16 fade-in" style="animation-delay: 1s;">
+    <div class="container mx-auto max-w-5xl px-6 text-center">
+      <h3 class="text-3xl font-extrabold text-blue-700 mb-12">What Our Anglers Say</h3>
+      <div class="grid md:grid-cols-3 gap-10">
+        <blockquote class="bg-white p-8 rounded-xl shadow-lg">
+          <p class="mb-4 text-blue-900 italic">"Flex Your Catch is the best fishing community I've joined — I love sharing my catches and seeing what others reel in."</p>
+          <footer class="text-blue-700 font-semibold">– Jamie R.</footer>
+        </blockquote>
+        <blockquote class="bg-white p-8 rounded-xl shadow-lg">
+          <p class="mb-4 text-blue-900 italic">"Submitting catches is super easy and I got featured twice! The vibe here is unreal."</p>
+          <footer class="text-blue-700 font-semibold">– Connor T.</footer>
+        </blockquote>
+        <blockquote class="bg-white p-8 rounded-xl shadow-lg">
+          <p class="mb-4 text-blue-900 italic">"I learned so many tips and tricks. The community is tight-knit and always helpful."</p>
+          <footer class="text-blue-700 font-semibold">– Aisha M.</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Signup Section -->
+  <section class="container mx-auto px-6 py-16 max-w-4xl fade-in" style="animation-delay: 1.2s;">
+    <h3 class="text-3xl font-extrabold text-blue-700 mb-6 text-center">Stay Updated with Our Newsletter</h3>
+    <form class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-xl mx-auto">
+      <input
+        type="email"
+        placeholder="Your email address"
+        required
+        class="w-full sm:flex-1 border border-blue-300 rounded-full py-3 px-5 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
+      />
+      <button type="submit" class="btn-primary">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+<footer class="bg-blue-900 text-blue-200 py-10 mt-20">
+  <div class="container mx-auto px-6 max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div>
+      <h4 class="text-xl font-bold mb-4">Flex Your Catch</h4>
+      <p>© 2025 Flex Your Catch. All rights reserved.</p>
+    </div>
+    <div>
+      <h4 class="text-xl font-bold mb-4">Contact</h4>
+      <p>Email: support@flexyourcatch.com</p>
+      <p>Phone: +61 123 456 789</p>
+    </div>
+    <div>
+      <h4 class="text-xl font-bold mb-4">Follow Us</h4>
+      <div class="flex space-x-6 items-center">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/FlexYourCatch" target="_blank" aria-label="Facebook" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- Twitter (X) -->
+        <a href="https://twitter.com/FlexYourCatch" target="_blank" aria-label="Twitter" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="Twitter (X)" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/FlexYourCatch" target="_blank" aria-label="Instagram" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@FlexYourCatch" target="_blank" aria-label="YouTube" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" width="28" style="filter: invert(1);" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Scripts -->
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+
+    // Fade-in animation trigger on scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0,
+      rootMargin: '0px 0px -100px 0px',
+    };
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+
+</body>
+</html>

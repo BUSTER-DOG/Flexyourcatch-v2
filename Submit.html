@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Submit Your Catch - Flex Your Catch</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAVh3Le7yIXSHBRXb4v4KElY35_nbQO7Qc",
+      authDomain: "flex-your-catch.firebaseapp.com",
+      projectId: "flex-your-catch",
+      storageBucket: "flex-your-catch.firebasestorage.app",
+      messagingSenderId: "838037705109",
+      appId: "1:838037705109:web:c4049435207c6aae06e69c"
+    };
+
+    // Initialize Firebase & Firestore
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("catchForm");
+      const statusMsg = document.getElementById("statusMsg");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Grab form values
+        const species = form.species.value.trim();
+        const size = parseFloat(form.size.value);
+        const location = form.location.value.trim();
+        const date = form.date.value;
+        const image = form.image.value.trim();
+        const angler = form.angler.value.trim();
+
+        // Basic validation
+        if (!species || !size || !location || !date || !image || !angler) {
+          statusMsg.textContent = "Yo, fill out all the fields!";
+          statusMsg.className = "text-red-600 mb-4 text-center font-semibold";
+          return;
+        }
+
+        try {
+          await addDoc(collection(db, "catches"), {
+            species,
+            size,
+            location,
+            date,
+            image,
+            angler,
+            timestamp: new Date()
+          });
+
+          statusMsg.textContent = "🔥 Catch submitted! Thanks for sharing.";
+          statusMsg.className = "text-green-600 mb-4 text-center font-semibold";
+
+          form.reset();
+        } catch (error) {
+          statusMsg.textContent = "Oops, something broke. Try again!";
+          statusMsg.className = "text-red-600 mb-4 text-center font-semibold";
+          console.error("Firestore addDoc error:", error);
+        }
+      });
+    });
+  </script>
+</head>
+<body class="bg-blue-50 text-gray-800 font-sans min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md fixed w-full top-0 left-0 z-50">
+    <div class="container mx-auto flex justify-between items-center px-6 py-4">
+      <a href="index.html" class="text-3xl font-extrabold text-blue-700 flex items-center gap-2 select-none">
+        🎣 Flex Your Catch
+      </a>
+      <ul class="hidden md:flex space-x-6 text-blue-700 font-semibold">
+        <li><a href="index.html" class="hover:underline">Home</a></li>
+        <li><a href="catches.html" class="hover:underline">Catches</a></li>
+        <li><a href="submit.html" class="nav-link-active underline font-bold">Submit</a></li>
+        <li><a href="about.html" class="hover:underline">About</a></li>
+        <li><a href="contact.html" class="hover:underline">Contact</a></li>
+        <li><a href="leaderboard.html" class="hover:underline">Leaderboard</a></li>
+      </ul>
+      <button id="mobile-menu-btn" class="md:hidden focus:outline-none">
+        <svg class="w-8 h-8 text-blue-700" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white px-6 py-4">
+    <ul class="flex flex-col space-y-4 text-blue-700 font-semibold">
+      <li><a href="index.html" class="hover:underline">Home</a></li>
+      <li><a href="catches.html" class="hover:underline">Catches</a></li>
+      <li><a href="submit.html" class="nav-link-active underline font-bold">Submit</a></li>
+      <li><a href="about.html" class="hover:underline">About</a></li>
+      <li><a href="contact.html" class="hover:underline">Contact</a></li>
+      <li><a href="leaderboard.html" class="hover:underline">Leaderboard</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-grow container mx-auto px-6 pt-32 pb-16 max-w-lg">
+    <h1 class="text-4xl font-extrabold text-blue-700 mb-8 text-center">Submit Your Catch</h1>
+    <p id="statusMsg" class="mb-4 text-center"></p>
+    <form id="catchForm" class="bg-white p-8 rounded-xl shadow-md space-y-6" novalidate>
+      <div>
+        <label for="species" class="block font-semibold mb-1">Fish Species</label>
+        <input type="text" id="species" name="species" placeholder="e.g. Snapper" required
+          class="w-full border border-blue-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600 transition" />
+      </div>
+      <div>
+        <label for="size" class="block font-semibold mb-1">Length (cm)</label>
+        <input type="number" id="size" name="size" step="0.01" min="0" placeholder="e.g. 35.5" required
+          class="w-full border border-blue-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600 transition" />
+      </div>
+      <div>
+        <label for="location" class="block font-semibold mb-1">Location</label>
+        <input type="text" id="location" name="location" placeholder="Where did you catch it?" required
+          class="w-full border border-blue-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600 transition" />
+      </div>
+      <div>
+        <label for="date" class="block font-semibold mb-1">Date</label>
+        <input type="date" id="date" name="date" required
+          class="w-full border border-blue-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600 transition" />
+      </div>
+      <div>
+        <label for="image" class="block font-semibold mb-1">Photo URL</label>
+        <input type="url" id="image" name="image" placeholder="Paste your image URL here" required
+          class="w-full border border-blue-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600 transition" />
+        <p class="text-sm text-gray-500 mt-1">Tip: Go to <a href="https://imgur.com/upload" target="_blank" class="underline text-blue-600 hover:text-blue-800">imgur.com/upload</a> and paste the direct link Above Then add .jpg
+		E.g https://imgur.com/LJaqtCI.jpg</p>
+      </div>
+      <div
+        <label for="angler" class="block font-semibold mb-1">Your Name</label>
+        <input type="text" id="angler" name="angler" placeholder="Your name" required
+          class="w-full border border-blue-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600 transition" />
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-full hover:bg-blue-700 transition duration-300">
+        Submit Catch
+      </button>
+    </form>
+  </main>
+
+  <!-- Footer -->
+<footer class="bg-blue-900 text-blue-200 py-10 mt-20">
+  <div class="container mx-auto px-6 max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div>
+      <h4 class="text-xl font-bold mb-4">Flex Your Catch</h4>
+      <p>© 2025 Flex Your Catch. All rights reserved.</p>
+    </div>
+    <div>
+      <h4 class="text-xl font-bold mb-4">Contact</h4>
+      <p>Email: support@flexyourcatch.com</p>
+      <p>Phone: +61 123 456 789</p>
+    </div>
+    <div>
+      <h4 class="text-xl font-bold mb-4">Follow Us</h4>
+      <div class="flex space-x-6 items-center">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/FlexYourCatch" target="_blank" aria-label="Facebook" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- Twitter (X) -->
+        <a href="https://twitter.com/FlexYourCatch" target="_blank" aria-label="Twitter" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="Twitter (X)" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/FlexYourCatch" target="_blank" aria-label="Instagram" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@FlexYourCatch" target="_blank" aria-label="YouTube" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" width="28" style="filter: invert(1);" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById("mobile-menu-btn");
+    const menu = document.getElementById("mobile-menu");
+
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  </script>
+
+</body>
+</html>
+
+

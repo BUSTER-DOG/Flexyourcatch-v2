@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flex Your Catch - Catches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #e0f2fe;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0284c7;
+      border-radius: 9999px;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.7s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .btn-filter {
+      @apply bg-blue-100 text-blue-700 px-4 py-2 rounded-md cursor-pointer hover:bg-blue-300 transition;
+    }
+    .btn-filter-active {
+      @apply bg-blue-600 text-white;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(2, 132, 199, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+    <div class="container mx-auto flex justify-between items-center px-6 py-4">
+      <a href="index.html" class="text-3xl font-extrabold text-blue-700 flex items-center gap-2">
+        🎣 Flex Your Catch
+      </a>
+      <ul class="hidden md:flex space-x-6 text-blue-700 font-semibold">
+        <li><a href="index.html" class="hover:underline">Home</a></li>
+        <li><a href="catches.html" class="underline font-bold">Catches</a></li>
+        <li><a href="submit.html" class="hover:underline">Submit</a></li>
+        <li><a href="about.html" class="hover:underline">About</a></li>
+        <li><a href="contact.html" class="hover:underline">Contact</a></li>
+		<li><a href="leaderboard.html" class="hover:underline">Leaderboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="mt-24 mb-10 text-center fade-in">
+    <h1 class="text-5xl font-extrabold text-blue-700">Latest Catches</h1>
+    <p class="text-blue-900 mt-3 max-w-xl mx-auto">See what the fishing legends are pulling up!</p>
+  </header>
+
+  <!-- Filter Buttons -->
+  <section class="container mx-auto px-6 max-w-7xl mb-12 fade-in">
+    <div class="flex flex-wrap justify-center gap-4">
+      <button class="btn-filter btn-filter-active" data-filter="all">All</button>
+      <button class="btn-filter" data-filter="Flathead">Flathead</button>
+      <button class="btn-filter" data-filter="Snapper">Snapper</button>
+      <button class="btn-filter" data-filter="Squid">Squid</button>
+      <!-- Add more filters if needed -->
+    </div>
+  </section>
+
+  <!-- Catch Grid -->
+  <section class="container mx-auto px-6 max-w-7xl grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 fade-in" id="catch-grid">
+    <p class="text-center col-span-full text-gray-500">Loading catches...</p>
+  </section>
+
+  <!-- Footer -->
+<footer class="bg-blue-900 text-blue-200 py-10 mt-20">
+  <div class="container mx-auto px-6 max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div>
+      <h4 class="text-xl font-bold mb-4">Flex Your Catch</h4>
+      <p>© 2025 Flex Your Catch. All rights reserved.</p>
+    </div>
+    <div>
+      <h4 class="text-xl font-bold mb-4">Contact</h4>
+      <p>Email: support@flexyourcatch.com</p>
+      <p>Phone: +61 123 456 789</p>
+    </div>
+    <div>
+      <h4 class="text-xl font-bold mb-4">Follow Us</h4>
+      <div class="flex space-x-6 items-center">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/FlexYourCatch" target="_blank" aria-label="Facebook" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- Twitter (X) -->
+        <a href="https://twitter.com/FlexYourCatch" target="_blank" aria-label="Twitter" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="Twitter (X)" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/FlexYourCatch" target="_blank" aria-label="Instagram" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@FlexYourCatch" target="_blank" aria-label="YouTube" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" width="28" style="filter: invert(1);" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script>
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAVh3Le7yIXSHBRXb4v4KElY35_nbQO7Qc",
+      authDomain: "flex-your-catch.firebaseapp.com",
+      projectId: "flex-your-catch",
+      storageBucket:'flex-your-catch.firebasestorage.app',
+      messagingSenderId: "838037705109",
+      appId: "1:838037705109:web:c4049435207c6aae06e69c"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const grid = document.getElementById("catch-grid");
+
+    db.collection("catches").orderBy("timestamp", "desc").get().then((snapshot) => {
+      grid.innerHTML = ""; // clear "loading" text
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const card = document.createElement("article");
+        card.className = "card bg-white rounded-2xl shadow-md overflow-hidden transform transition-transform duration-300 cursor-pointer";
+        card.setAttribute("data-species", data.species);
+
+        card.innerHTML = `
+          <img src="${data.image}" alt="${data.species}" class="w-full h-48 object-cover" />
+          <div class="p-5 space-y-2">
+            <h3 class="text-xl font-bold text-blue-700">${data.species}</h3>
+            <p><strong>Size:</strong> ${data.size} cm</p>
+            <p><strong>Location:</strong> ${data.location}</p>
+            <p><strong>Angler:</strong> ${data.angler}</p>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }).catch((err) => {
+      grid.innerHTML = `<p class="text-red-500">Error loading catches: ${err.message}</p>`;
+    });
+
+    // Filter logic
+    const buttons = document.querySelectorAll('.btn-filter');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('btn-filter-active'));
+        button.classList.add('btn-filter-active');
+        const filter = button.getAttribute('data-filter');
+        document.querySelectorAll('.card').forEach(card => {
+          card.style.display = (filter === "all" || card.dataset.species === filter) ? "block" : "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>

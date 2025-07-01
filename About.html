@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Flex Your Catch</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation-fill-mode: forwards;
+      animation-name: fadeInUp;
+      animation-duration: 0.7s;
+      animation-timing-function: ease-out;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-800 font-sans">
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+    <div class="container mx-auto flex justify-between items-center px-6 py-4">
+      <a href="index.html" class="text-3xl font-extrabold text-blue-700 select-none flex items-center gap-2">
+        🎣 Flex Your Catch
+      </a>
+      <ul class="hidden md:flex space-x-8 text-blue-700 font-semibold">
+        <li><a href="index.html" class="hover:underline">Home</a></li>
+        <li><a href="catches.html" class="hover:underline">Catches</a></li>
+        <li><a href="about.html" class="underline font-bold">About</a></li>
+        <li><a href="contact.html" class="hover:underline">Contact</a></li>
+		<li><a href="leaderboard.html" class="hover:underline">Leaderboard</a></li>
+      </ul>
+      <a href="submit.html" class="hidden md:inline-block bg-blue-600 text-white font-semibold py-2 px-5 rounded-full shadow-lg hover:bg-blue-700 transition">
+        📸 Submit Catch
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-28 pb-16 px-6 max-w-4xl mx-auto fade-in">
+    <h1 class="text-5xl font-extrabold text-blue-700 mb-6">About Flex Your Catch</h1>
+    <p class="text-lg text-blue-900 mb-4">
+      Welcome to <strong>Flex Your Catch</strong> — the ultimate space for anglers who love to show off their fishy victories. Whether you’re reeling in monsters from the deep or just landed your first squid off the pier, this is your spot to share, brag, and inspire.
+    </p>
+    <p class="text-lg text-blue-900 mb-4">
+      We started this site with one goal: to create the chillest, most legendary fishing community online. Built by passionate fishers (and lowkey tech nerds), our site lets you upload your catch, browse what others are landing, and even pick up tips from the best.
+    </p>
+    <p class="text-lg text-blue-900 mb-4">
+      Flex Your Catch is all about:
+    </p>
+    <ul class="list-disc list-inside text-blue-900 text-lg mb-6">
+      <li>📸 Celebrating every catch — big or small</li>
+      <li>🌊 Sharing your fishing stories and tips</li>
+      <li>🎯 Helping you connect with other Aussie anglers</li>
+      <li>💡 Inspiring the next generation of fishing pros</li>
+    </ul>
+    <p class="text-lg text-blue-900">
+      Got questions, feedback, or wanna collab with us? Hit up the <a href="contact.html" class="text-blue-700 font-bold hover:underline">Contact</a> page.
+    </p>
+  </main>
+
+  <!-- Footer -->
+<footer class="bg-blue-900 text-blue-200 py-10 mt-20">
+  <div class="container mx-auto px-6 max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div>
+      <h4 class="text-xl font-bold mb-4">Flex Your Catch</h4>
+      <p>© 2025 Flex Your Catch. All rights reserved.</p>
+    </div>
+    <div>
+      <h4 class="text-xl font-bold mb-4">Contact</h4>
+      <p>Email: support@flexyourcatch.com</p>
+      <p>Phone: +61 123 456 789</p>
+    </div>
+    <div>
+      <h4 class="text-xl font-bold mb-4">Follow Us</h4>
+      <div class="flex space-x-6 items-center">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/FlexYourCatch" target="_blank" aria-label="Facebook" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- Twitter (X) -->
+        <a href="https://twitter.com/FlexYourCatch" target="_blank" aria-label="Twitter" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="Twitter (X)" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/FlexYourCatch" target="_blank" aria-label="Instagram" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="28" style="filter: invert(1);" />
+        </a>
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@FlexYourCatch" target="_blank" aria-label="YouTube" class="hover:opacity-80 transition">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" width="28" style="filter: invert(1);" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    // Fade-in animation
+    document.addEventListener("DOMContentLoaded", () => {
+      const fader = document.querySelector(".fade-in");
+      fader.style.opacity = 1;
+      fader.style.transform = "translateY(0)";
+    });
+  </script>
+</body>
+</html>
